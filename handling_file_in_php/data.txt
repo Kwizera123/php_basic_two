@@ -1,6 +1,0 @@
-fopen(): Opens a file.
-fwrite(): Write data to a file.
-fread(): Read data from a file.
-fclose(): Closes a file.
-file_exists(): checks of a file exist.
-unlink(): Deletes a file.
