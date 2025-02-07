@@ -31,11 +31,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $fileErr = "Sorry there was an error to upload your file.";
       }
     }
+    // Handle when file does not upload
+  }else{
+    switch ($_FILES['file']['error']){
+      case UPLOAD_ERR_INI_SIZE;
+      $fileErr = "The uploaded files exceeds the maximum size allowed by the server";
+    }
+  }
 
-
-  
-
-     
+  if(empty($fileErr)){
+    echo "The file has been uploaded";
+  }else{
+    echo $fileErr . "<br>";
   }
 }
 ?>
