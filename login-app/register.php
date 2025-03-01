@@ -14,26 +14,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $password = mysqli_real_escape_string($conn, $_POST['password']);
   $confirm_password = mysqli_real_escape_string($conn, $_POST['confirm_password']);
 
+  // Check of the password and confirm match
   if ($password !== $confirm_password) {
     $error = "Password do not match";
   } else {
-
+  //Checo if username already exist
     $sql = "SELECT * FROM users WHERE username='$username' LIMIT 1";
     $result = mysqli_query($conn, $sql);
 
 
     if(mysqli_num_rows($result) === 1){
       $error = "Username already exists, Please choose another"; 
-    }
+    } else{
 
+      $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
-
-    $sql = "INSERT INTO users (username, password, email) VALUES ('$username', '$password', '$email')";
+    $sql = "INSERT INTO users (username, password, email) VALUES ('$username', '$passwordHash', '$email')";
     if (mysqli_query($conn, $sql)) {
       echo "Data Inserted Successfully";
     } else {
-      echo "Opoos! Data were not Inserted, error: " . mysqli_error($conn);
+      $error = "Opoos! Data were not Inserted, error: " . mysqli_error($conn);
     };
+
+    }
+
   }
 }
 
@@ -70,5 +74,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <input type="submit" value="Register">
   </form>
 </body>
-
 </html>
+
+<?php
+mysqli_close($conn);
+  ?>
