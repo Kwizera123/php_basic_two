@@ -2,6 +2,12 @@
 
 include "db.php";
 
+session_start();
+
+
+
+
+
 $error = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -10,13 +16,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
   $sql = "SELECT * FROM users WHERE username='$username' LIMIT 1";
-    $result = mysqli_query($conn, $sql);
+  $result = mysqli_query($conn, $sql);
 
 
-    if(mysqli_num_rows($result) === 1){
-      $user = mysqli_fetch_assoc($result); 
+  if (mysqli_num_rows($result) === 1) {
+    $user = mysqli_fetch_assoc($result);
+
+    if(password_verify($password,$user['password'])){
+      $_SESSION['logged_in'] = true;
+      $_SESSION['username'] = $user['username'];
+      header("Location: admin.php");
+      exit;
     } else{
+      $error = "Invalid password";
     }
+
+
+    // Mysqli num rows
+  } else {
+    $error = "Invalid username";
+  }
 }
 
 
@@ -34,25 +53,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
   <h2>Login</h2>
 
-  <?php if($error): ?>
+  <?php if ($error): ?>
 
     <p style="color:red">
       <?php echo $error; ?>
     </p>
-    <?php endif; ?>
+  <?php endif; ?>
 
   <form method="POST" action="">
-    <label for="username">Username:</label><br>
-
-    <input type="email" id="email" name="email" required><br><br>
-    <label for="password">Password:</label><br>
-
-    <input type="password" id="confirm_password" name="confirm_password" required><br><br>
-    <input type="submit" value="Register">
+  <label for="username">Username:</label><br>
+  <input type="text" id="username" name="username" required><br><br>
+  <label for="password">Password:</label><br>
+  <input type="password" id="password" name="password" required><br><br>
+    <input type="submit" value="Login">
   </form>
 </body>
+
 </html>
 
 <?php
 mysqli_close($conn);
-  ?>
+?>
