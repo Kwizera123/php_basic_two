@@ -1,10 +1,9 @@
 <?php
 
-include "db.php";
+include "partials/header.php";
+include "partials/navigation.php";
 
-ini_set('display_errors',1);
-ini_set('display_startup_errors',1);
-error_reporting(E_ALL);
+
 
 $error = "";
 
@@ -43,18 +42,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-
-<body>
+<div class="container">
   <h2>Register</h2>
-
+ 
   <?php if($error): ?>
 
     <p style="color:red">
@@ -73,8 +63,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <input type="password" id="confirm_password" name="confirm_password" required><br><br>
     <input type="submit" value="Register">
   </form>
-</body>
-</html>
+  </div>
+  <?php 
+  include "partials/footer.php";
+?>
 
 <?php
 mysqli_close($conn);

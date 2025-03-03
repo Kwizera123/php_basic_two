@@ -1,11 +1,7 @@
 <?php
 
-include "db.php";
-
-session_start();
-
-
-
+include "partials/header.php";
+include "partials/navigation.php";
 
 
 $error = "";
@@ -22,12 +18,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if (mysqli_num_rows($result) === 1) {
     $user = mysqli_fetch_assoc($result);
 
-    if(password_verify($password,$user['password'])){
+    if (password_verify($password, $user['password'])) {
       $_SESSION['logged_in'] = true;
       $_SESSION['username'] = $user['username'];
       header("Location: admin.php");
       exit;
-    } else{
+    } else {
       $error = "Invalid password";
     }
 
@@ -37,20 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $error = "Invalid username";
   }
 }
-
-
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-
-<body>
+<div class="container">
   <h2>Login</h2>
 
   <?php if ($error): ?>
@@ -61,15 +45,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <?php endif; ?>
 
   <form method="POST" action="">
-  <label for="username">Username:</label><br>
-  <input type="text" id="username" name="username" required><br><br>
-  <label for="password">Password:</label><br>
-  <input type="password" id="password" name="password" required><br><br>
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username" required><br><br>
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password" required><br><br>
     <input type="submit" value="Login">
   </form>
-</body>
-
-</html>
+  </div>
+  <?php
+include "partials/footer.php";
+?>
 
 <?php
 mysqli_close($conn);
