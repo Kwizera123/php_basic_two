@@ -1,5 +1,6 @@
 <?php
   include "db.php";
+  include "functions.php";
 
 ini_set('display_errors',1);
 ini_set('display_startup_errors',1);
@@ -15,4 +16,4 @@ error_reporting(E_ALL);
     <title>Login App with SQL and PHP </title>
     <link rel="stylesheet" href="css/style.css">
   </head>
-  <body>
+  <body class="<?php echo getPageClass() ?>">

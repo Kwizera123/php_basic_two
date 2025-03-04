@@ -30,7 +30,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $sql = "INSERT INTO users (username, password, email) VALUES ('$username', '$passwordHash', '$email')";
     if (mysqli_query($conn, $sql)) {
-      echo "Data Inserted Successfully";
+        $_SESSION['logged_in'] = true;
+        $_SESSION['username'] = $username;
+        header("Location: admin.php");
+        exit;
     } else {
       $error = "Opoos! Data were not Inserted, error: " . mysqli_error($conn);
     };
@@ -42,27 +45,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 ?>
 
-<div class="container">
-  <h2>Register</h2>
- 
-  <?php if($error): ?>
-
+  <div class="container">
+    <div class="form-container">
+  
+    <form method="POST" action="">
+    <h2>Create Your Account</h2>
+    <?php if($error): ?>
     <p style="color:red">
       <?php echo $error; ?>
     </p>
     <?php endif; ?>
-
-  <form method="POST" action="">
-    <label for="username">Username:</label><br>
-    <input type="text" id="username" name="username" required><br><br>
-    <label for="email">Email:</label><br>
-    <input type="email" id="email" name="email" required><br><br>
-    <label for="password">Password:</label><br>
-    <input type="password" id="password" name="password" required><br><br>
-    <label for="confirm_password">Confirm Password:</label><br>
-    <input type="password" id="confirm_password" name="confirm_password" required><br><br>
+    <label for="username">Username:</label>
+    <input value="<?php echo isset($username) ? $username : ''; ?>" type="text" id="username" name="username" placeholder="Enter username" required>
+    <label for="email">Email:</label>
+    <input value="<?php echo isset($email) ? $email : ''; ?>" type="email" id="email" name="email" placeholder="Enter Email" required>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" placeholder="Enter password" required>
+    <label for="confirm_password">Confirm Password:</label>
+    <input type="password" id="confirm_password" name="confirm_password" placeholder="Enter confirm password" required>
     <input type="submit" value="Register">
   </form>
+    </div>
   </div>
   <?php 
   include "partials/footer.php";

@@ -27,7 +27,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $error = "Invalid password";
     }
 
-
     // Mysqli num rows
   } else {
     $error = "Invalid username";
@@ -35,22 +34,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 <div class="container">
-  <h2>Login</h2>
+ 
 
-  <?php if ($error): ?>
 
-    <p style="color:red">
-      <?php echo $error; ?>
-    </p>
-  <?php endif; ?>
-
+    <div class="form-container">
+      
   <form method="POST" action="">
-    <label for="username">Username:</label><br>
-    <input type="text" id="username" name="username" required><br><br>
-    <label for="password">Password:</label><br>
-    <input type="password" id="password" name="password" required><br><br>
+  <h2>Login</h2>
+  <?php if ($error): ?>
+<p style="color:red">
+  <?php echo $error; ?>
+</p>
+<?php endif; ?>
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" placeholder="Enter Username" required>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" placeholder="Enter Password"required>
     <input type="submit" value="Login">
   </form>
+  </div>
   </div>
   <?php
 include "partials/footer.php";
