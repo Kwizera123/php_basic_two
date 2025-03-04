@@ -135,7 +135,7 @@ body{
   }
 
   body.index .hero{
-    background-color: #282828;
+    background-image: url("../images/hero-image.png");
     background-size:cover;
     background-position: center;
     height: 100vh;
@@ -149,9 +149,15 @@ body{
   }
 
   /* For later to use with bg image */
-  /* .hero::before{
-
-  } */
+  .hero::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: -1;
+  }
 
   body.index .hero .hero-content{
     max-width: 600px;
