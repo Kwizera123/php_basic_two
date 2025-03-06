@@ -1,11 +1,16 @@
 <?php
+$host = "localhost";
+$username = "root";
+$password = "root";
+$database = "login_app";
 
-$conn = mysqli_connect("localhost", "root", "root","login_app");
+$conn = mysqli_connect($host, $username, $password,$database);
 
-if($conn){
-  // echo "Connected";
+if(!$conn){
+    die("Connection failed" . mysqli_connect_error());
+  
 }else{
-  echo "Not Connected" . mysqli_error($conn);
+  // echo "Connected";
 };
 
 function check_query($result){

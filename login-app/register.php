@@ -3,9 +3,13 @@
 include "partials/header.php";
 include "partials/navigation.php";
 
-
+if(is_user_logged_in()){
+  header("Location: admin.php");
+  exit;
+}
 
 $error = "";
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $username = mysqli_real_escape_string($conn, $_POST['username']);
