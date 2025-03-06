@@ -7,3 +7,11 @@ if($conn){
 }else{
   echo "Not Connected" . mysqli_error($conn);
 };
+
+function check_query($result){
+  global $conn;
+  if(!$result){
+    return "Error" . mysqli_error($conn);
+  }
+    return true;
+}

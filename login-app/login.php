@@ -2,7 +2,10 @@
 
 include "partials/header.php";
 include "partials/navigation.php";
-
+if(is_user_logged_in()){
+  header("Location: admin.php");
+  exit;
+}
 
 $error = "";
 
@@ -18,10 +21,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if (mysqli_num_rows($result) === 1) {
     $user = mysqli_fetch_assoc($result);
 
-    if (password_verify($password, $user['password'])) {
+    if(password_verify($password, $user['password'])) {
       $_SESSION['logged_in'] = true;
       $_SESSION['username'] = $user['username'];
-      header("Location: admin.php");
+      redirect("admin.php");
       exit;
     } else {
       $error = "Invalid password";
@@ -32,6 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $error = "Invalid username";
   }
 }
+
 ?>
 <div class="container">
  
