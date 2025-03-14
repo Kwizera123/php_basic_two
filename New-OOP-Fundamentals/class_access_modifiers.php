@@ -46,4 +46,8 @@
      echo $admin->displayFromAdmin();
 
   //  echo $admin->getEmailagain();
+
+
+
+  //NOTE: ====== IT SEEMS TO HAVE ERROR, BUT THAT'S HOW IT SUPPOSES TO BE
  ?>
