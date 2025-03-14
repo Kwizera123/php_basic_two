@@ -1,12 +1,32 @@
 <?php
+
+use Dom\TokenList;
   include "partials/header.php";
   include "partials/notifications.php";
   include "config/Database.php";
+  include "classes/Task.php";
 
   $database = new Database();
-
   $db = $database->connect();
 
+  $todo = new Task($db);
+
+  
+
+    if($_SERVER['REQUEST_METHOD'] === 'POST'){
+      
+      if(isset($_POST['add_task'])){
+
+        $todo->task = $_POST['task'];
+        $todo->create();
+
+
+
+      }
+
+    }
+    // FETCH TASKS
+   $tasks = $todo->read()
  ?>
 
       <!-- Main Content Container -->
@@ -21,6 +41,7 @@
 
         <!-- Display Tasks -->
         <ul>
+          <?php while($task = $tasks->fetch_assoc()): ?>
             <li class="completed">
                 <span class="completed">Sample Task</span>
                 <div>
@@ -60,6 +81,7 @@
                     </form>
                 </div>
             </li>
+            <?php endwhile; ?>
         </ul>
     </div>
 
