@@ -34,6 +34,20 @@
       return $stmt->execute();
     }
 
+    public function undoComplete($id){
+      $query = " UPDATE " . $this->table . " SET is_completed = 0 WHERE id = ?";
+      $stmt = $this->conn->prepare($query);
+      $stmt->bind_param("i", $id);
+      return $stmt->execute();
+    }
+
+    public function delete($id){
+      $query = " DELETE from " . $this->table . " WHERE id = ?";
+      $stmt = $this->conn->prepare($query);
+      $stmt->bind_param("i", $id);
+      return $stmt->execute();
+    }
+
   }
 
  ?>
