@@ -27,6 +27,13 @@
       return $result;
     }
 
+    public function complete($id){
+      $query = " UPDATE " . $this->table . " SET is_completed = 1 WHERE id = ?";
+      $stmt = $this->conn->prepare($query);
+      $stmt->bind_param("i", $id);
+      return $stmt->execute();
+    }
+
   }
 
  ?>
