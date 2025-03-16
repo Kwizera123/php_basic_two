@@ -46,7 +46,7 @@ use Dom\TokenList;
 
     <!-- notification container -->
       <?php if(isset($_SESSION['message'])): ?>
-        <div class="notification-container">
+        <div class="notification-container <?php echo isset($_SESSION['message']) ? "show": '' ?>">
           <div class="notification <?php echo $_SESSION['msg_type']; ?>">
           <?php echo $_SESSION['message'] ?>
           <?php unset($_SESSION['message']); ?>
@@ -86,7 +86,7 @@ use Dom\TokenList;
                     <?php endif; ?>
 
                     <!-- Delete Task -->
-                    <form method="POST" style="display:inline;">
+                    <form onsubmit="return confirmDelete()" method="POST" style="display:inline;">
                         <input type="hidden" name="id" value="<?php echo $task['id']; ?>">
                         <button class="delete" type="submit" name="delete_task">Delete</button>
                     </form>
@@ -95,6 +95,12 @@ use Dom\TokenList;
             <?php endwhile; ?>
         </ul>
     </div>
+
+    <script>
+      function confirmDelete(){
+        return confirm("Are you sure you want to delete this task ?");
+      }
+    </script>
 
     <?php 
       include "partials/footer.php";

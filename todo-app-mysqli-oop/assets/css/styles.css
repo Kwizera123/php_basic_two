@@ -31,6 +31,14 @@ body {
   align-items: center;
 }
 
+.notification-container {
+  display: none;
+}
+
+.notification-container.show {
+  display: block;
+}
+
 .notification {
   padding: 15px;
   border-radius: 5px;
