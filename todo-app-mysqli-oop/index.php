@@ -5,6 +5,7 @@ use Dom\TokenList;
   include "partials/notifications.php";
   include "config/Database.php";
   include "classes/Task.php";
+  session_start();
 
   $database = new Database();
   $db = $database->connect();
@@ -19,21 +20,39 @@ use Dom\TokenList;
 
         $todo->task = $_POST['task'];
         $todo->create();
+        $_SESSION['message'] = "Task added successfully";
+        $_SESSION['msg_type'] = "success";
 
       } elseif (isset($_POST['complete_task'])){
         $todo->complete($_POST['id']);
+        $_SESSION['message'] = "Task marked completed";
+        $_SESSION['msg_type'] = "success";
 
       } elseif (isset($_POST['undo_complete_task'])){
         $todo->undoComplete($_POST['id']);
+        $_SESSION['message'] = "Task marked incompleted";
+        $_SESSION['msg_type'] = "success";
 
       }elseif (isset($_POST['delete_task'])){
         $todo->delete($_POST['id']);
+        $_SESSION['message'] = "Task Deleted";
+        $_SESSION['msg_type'] = "error";
       }
 
     }
     // FETCH TASKS
    $tasks = $todo->read()
  ?>
+
+    <!-- notification container -->
+      <?php if(isset($_SESSION['message'])): ?>
+        <div class="notification-container">
+          <div class="notification <?php echo $_SESSION['msg_type']; ?>">
+          <?php echo $_SESSION['message'] ?>
+          <?php unset($_SESSION['message']); ?>
+          </div>
+        </div>
+      <?php endif; ?>
 
       <!-- Main Content Container -->
       <div class="container">
