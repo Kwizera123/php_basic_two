@@ -4,7 +4,7 @@
 require_once "autoloader.php";
 
 // Start Session
-session_start();
+  session_start();
 
 // Include the main configuration file
 require_once "config/config.php";
