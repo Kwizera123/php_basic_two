@@ -1,5 +1,8 @@
 <?php
 
+// Auto loader classes
+require_once "autoloader.php";
+
 // Start Session
 session_start();
 

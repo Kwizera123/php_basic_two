@@ -3,9 +3,6 @@ include "partials/header.php";
 include "partials/navbar.php";
 include "partials/hero.php";
 
-$db = new Databse();
-
-$db->getConnection();
 ?>
 
 
@@ -15,7 +12,7 @@ $db->getConnection();
         <div class="row mb-4">
             <div class="col-md-4">
                 <img
-                    src="https://via.placeholder.com/350x200"
+                    src="https://placehold.jp/350x200.png"
                     class="img-fluid"
                     alt="Blog Post Image"
                 >
@@ -33,7 +30,7 @@ $db->getConnection();
         <div class="row mb-4">
             <div class="col-md-4">
                 <img
-                    src="https://via.placeholder.com/350x200"
+                    src="https://placehold.jp/350x200.png"
                     class="img-fluid"
                     alt="Blog Post Image"
                 >
@@ -51,7 +48,7 @@ $db->getConnection();
         <div class="row mb-4">
             <div class="col-md-4">
                 <img
-                    src="https://via.placeholder.com/350x200"
+                    src="https://placehold.jp/350x200.png"
                     class="img-fluid"
                     alt="Blog Post Image"
                 >
