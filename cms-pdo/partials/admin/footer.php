@@ -2,7 +2,7 @@
 <!-- Footer -->
 <footer class="bg-dark text-white py-3 mt-auto">
         <div class="container text-center">
-            <p class="mb-0">&copy; 2045 CMS PDO System. All rights reserved by Edwin Diaz from EdwinDiaz.com</p>
+            <p class="mb-0">&copy; 2045 CMS PDO System. All rights reserved by Kwizera Theodore from kwizeratheodore.com</p>
         </div>
     </footer>
 
