@@ -2,6 +2,10 @@
 include "partials/header.php";
 include "partials/navbar.php";
 include "partials/hero.php";
+
+$db = new Databse();
+
+$db->getConnection();
 ?>
 
 
