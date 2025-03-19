@@ -27,6 +27,69 @@
       return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
+    public function getArticleById($id)
+    {
+      $query = "SELECT * FROM " . $this->table . " WHERE id = :id LIMIT 1";
+      $stmt = $this->conn->prepare($query);
+      $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+      $stmt->execute();
+      $article = $stmt->fetch(PDO::FETCH_OBJ);// magic happens here
+
+      if($article){
+        return $article;
+      } else {
+        return false;
+      }
+
+    }
+
+    public function getArticleWithOwnerById($id)
+    {
+      $query = "SELECT 
+                  articles.id,
+                  articles.title,
+                  articles.content,
+                  articles.image,
+                  articles.created_at,
+                  users.username As author,
+                  users.email AS author_email
+                FROM " . $this->table . "
+                JOIN users ON articles.user_id = users.id
+                WHERE articles.id = :id LIMIT 1";
+
+      $stmt = $this->conn->prepare($query);
+      $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+      $stmt->execute();
+      $article = $stmt->fetch(PDO::FETCH_OBJ);// magic happens here
+
+      if($article){
+        return $article;
+      } else {
+        return false;
+      }
+
+
+      $stmt = $this->conn->prepare($query);
+      $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+      $stmt->execute();
+      $article = $stmt->fetch(PDO::FETCH_OBJ);// magic happens here
+
+      if($article){
+        return $article;
+      } else {
+        return false;
+      }
+
+    }
+
+    public function formatCreatedAt($date)
+    {
+      return date('F j, Y', strtotime($date));
+    }
+
+    
+
+
   }
 
 
