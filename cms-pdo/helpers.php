@@ -31,7 +31,7 @@
       exit;
     }
 
-    // 
+    // 900605 
     function isPostRequest(){
       return $_SERVER['REQUEST_METHOD'] == "POST";
     }
