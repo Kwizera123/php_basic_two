@@ -25,6 +25,9 @@
 
         if(in_array($imageFileType, $allowedTypes)){
 
+            $uniqueFileName = uniqid() . "_" . time() . "." . $imageFileType;
+            $targetFile = $targetFile . "_" . $uniqueFileName;
+
             if(move_uploaded_file($_FILES['featured_image']['tmp_name'], $targetFile)){
                 $imagePath = $targetFile;
             } else {
