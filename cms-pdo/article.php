@@ -30,6 +30,7 @@ if($articleId) {
                 src="<?php echo htmlspecialchars($artcleData->image) ?>"
                 class="img-fluid w-100"
                 alt=" Featured Image"
+                
             >
 
             <?php else: ?>
