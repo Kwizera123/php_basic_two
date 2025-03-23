@@ -30,7 +30,7 @@ if($articleId) {
                 src="<?php echo htmlspecialchars($artcleData->image) ?>"
                 class="img-fluid w-100"
                 alt=" Featured Image"
-                
+                style="max-height: 600px"
             >
 
             <?php else: ?>
@@ -38,8 +38,9 @@ if($articleId) {
               <img
                 src="https://placehold.jp/1200x600.png"
                 class="img-fluid w-100"
-                alt="Featured Image">
-
+                alt="Featured Image"
+                style="max-height: 600px"
+                >
             <?php endif; ?>
         </div>
 
@@ -74,7 +75,7 @@ if($articleId) {
 
         <!-- Back to Home Button -->
         <div class="mt-4">
-            <a href="index.php" class="btn btn-secondary">← Back to Home</a>
+            <a href="<?php echo base_url("index.php"); ?>" class="btn btn-secondary">← Back to Home</a>
         </div>
     </main>
 
