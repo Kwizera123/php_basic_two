@@ -20,6 +20,10 @@
     <main class="container my-5">
         <h2 class="mb-4">Welcome <?php echo $_SESSION['username']; ?> to your Admin Dashboard</h2>
 
+        <form action="create-dumm-articles.php" method="post">
+            <button type="submit">Generate Articles</button>
+        </form>
+
         <!-- Articles Table -->
         <div class="table-responsive">
             <table class="table table-bordered table-hover align-middle">
@@ -51,7 +55,7 @@
                             <a href="edit-article.php?id=<?php echo $articleItem->id; ?>" class="btn btn-sm btn-primary me-1">Edit</a>
                         </td>
                         <td>
-                        <form method="POST" action="<?php echo base_url("deleted_article.php"); ?>">
+                        <form onsubmit="confirmDelete(<?php echo $articleItem->id; ?>)" method="POST" action="<?php echo base_url("deleted_article.php"); ?>">
                                 <input name="id" value="<?php echo $articleItem->id; ?>" type="hidden">
                             <!-- <button class="btn btn-sm btn-danger" onclick="confirmDelete(1)">Delete</button> -->
                             <button class="btn btn-sm btn-danger">Delete</button>
