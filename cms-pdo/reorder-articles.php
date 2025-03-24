@@ -3,19 +3,25 @@ require 'init.php';
 
 if(isPostRequest()){
   
-  $article = new Article();
+
 
     if(isset($_POST['reorder_articles'])){
+      $article = new Article();
 
-      $article->reorderAndResetAutoIncrement();
-      redirect("admin.php");
+      try{
+        $article->reorderAndResetAutoIncrement();
+        redirect("admin.php");
+      } catch (Exception $e) {
+        redirect("admin.php");
+      }
+
       
 
-      if($article->generateDummyData($_POST['article_count'])){
-        redirect('admin.php');
-      } else {
-        echo "Something happed, it's failed!";
-      }
+      // if($article->generateDummyData($_POST['article_count'])){
+      //   redirect('admin.php');
+      // } else {
+      //   echo "Something happed, it's failed!";
+      // }
 
     }
 

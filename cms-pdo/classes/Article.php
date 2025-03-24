@@ -246,7 +246,7 @@
         // DB Transaction
         $this->conn->beginTransaction();
 
-        $query = "SELECT id FROM " . $this->table . " ORDER BY id ASC";
+        $query = "SELECT id FROM " . $this->table;
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         $articles = $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -262,6 +262,18 @@
           $updateStmt->execute();
           $newId++;
         }
+
+        // Reset Auto_Increment
+
+        $nextAutoIncrementId = $newId;
+
+        $resetQuery = "ALTER TABLE " . $this->table . " AUTO_INCREMENT = :next_auto_increment";
+        $resetStmt = $this->conn->prepare($resetQuery);
+        $resetStmt->bindParam(':next_auto_increment', $nextAutoIncrementId, PDO::PARAM_INT);
+        $resetStmt->execute();
+
+        $this->conn->commit();
+        return true;
 
       } catch (Exception $exception){
 
