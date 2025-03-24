@@ -204,7 +204,7 @@
           return $stmt->execute();
     }
     
-    public function generateDummyData($num = 10)
+    public function generateDummyData($num = 1)
     {
       $query = "INSERT INTO " . $this->table . " (title, content, user_id, created_at, image)
         VALUE (:title, :content, :user_id, :created_at, :image)";

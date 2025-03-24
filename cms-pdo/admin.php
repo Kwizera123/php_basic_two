@@ -24,7 +24,7 @@
 
             <form class="d-flex align-items-center" action="create-dumm-articles.php" method="post">
                 <label class="form-label me-2" for="articleCount">Number of Articles</label>
-                <input min="1" style="width: 100px;" class="form-control me-2" name="article_count" type="number">
+                <input id="articleCount" min="1" style="width: 100px;" class="form-control me-2" name="article_count" type="number">
                 <button id="articleCount" class="btn btn-primary" type="submit">Generate Articles</button>
             </form>
 
