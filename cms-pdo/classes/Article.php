@@ -239,6 +239,37 @@
         return true;
     }
 
+    public function reorderAndResetAutoIncrement(){
+
+      // Transaction as whole (Big unit of steps
+      try{
+        // DB Transaction
+        $this->conn->beginTransaction();
+
+        $query = "SELECT id FROM " . $this->table . " ORDER BY id ASC";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        $articles = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        // Update each Articles ID's sequentially
+        $newId = 1;
+
+        foreach($articles as $article){
+          $updateQuery = "UPDATE " . $this->table . " SET id = :newId WHERE id = :old_id";
+          $updateStmt = $this->conn->prepare($updateQuery);
+          $updateStmt->bindParam(':newId', $newId, PDO::PARAM_INT);
+          $updateStmt->bindParam(':old_id', $article->id, PDO::PARAM_INT);
+          $updateStmt->execute();
+          $newId++;
+        }
+
+      } catch (Exception $exception){
+
+        $this->conn->rollBack();
+        throw $exception;
+      }
+    }
+
 
   }
 

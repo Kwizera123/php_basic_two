@@ -22,14 +22,14 @@
 
         <div class="d-flex justify-content-between align-items-center mb-4">
 
-            <form class="d-flex align-items-center" action="create-dumm-articles.php" method="post">
+            <form class="d-flex align-items-center" action="<?php echo base_url('create-dumm-articles.php') ?>" method="post">
                 <label class="form-label me-2" for="articleCount">Number of Articles</label>
                 <input id="articleCount" min="1" style="width: 100px;" class="form-control me-2" name="article_count" type="number">
                 <button id="articleCount" class="btn btn-primary" type="submit">Generate Articles</button>
             </form>
 
-            <form method="post">
-                <button name="reorder_articles" class="btn btn-warning" type="submit">Generate Articles</button>
+            <form action="<?php echo base_url('reorder-articles.php') ?>" method="post">
+                <button name="reorder_articles" class="btn btn-warning" type="submit">Reorder Article ID's</button>
             </form>
 
             <button id="deleteSelectedBtn" class="btn btn-danger">Delete Selected Articles</button>
