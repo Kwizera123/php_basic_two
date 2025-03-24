@@ -7,6 +7,8 @@ if(isPostRequest()){
 
   if($article->generateDummyData()){
     redirect('admin.php');
+  } else {
+    echo "Something happed, it's failed!";
   }
 }
 

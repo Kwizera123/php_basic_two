@@ -228,10 +228,10 @@
 
           $title = $dummy_titles[array_rand($dummy_titles)];
           $stmt->bindParam(':title', $title);
-          $stmt->bindParam(':dummy_content', $dummy_content);
+          $stmt->bindParam(':content', $dummy_content);
           $stmt->bindParam(':user_id', $user_id);
           $stmt->bindParam(':created_at', $created_at);
-          $stmt->bindParam(':dummy_image', $dummy_image);
+          $stmt->bindParam(':image', $dummy_image);
 
           $stmt->execute();
 
