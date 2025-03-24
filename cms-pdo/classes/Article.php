@@ -204,6 +204,40 @@
           return $stmt->execute();
     }
     
+    public function generateDummyData($num = 10)
+    {
+      $query = "INSERT INTO " . $this->table . " (title, content, user_id, created_at, image)
+        VALUE (:title, :content, :user_id, :created_at, :image)";
+
+        $stmt = $this->conn->prepare($query);
+
+        $dummy_titles = [
+            'The Dramatically recaptiualize', 'Proactively plagiarize.',
+            'Uniquely matrix.', 'Appropriately grow excellent..',
+            'Appropriately drive reliable.', 'Seamlessly reinvent premium..',
+            'Interactively deliver inexpensive', 'Enthusiastically conceptualize focused.',
+            'Quickly strategize 24/365.', 'Assertively exploit effective.'
+        ];
+
+        $dummy_content = "Holisticly expedite go forward e-services without team driven benefits. Authoritatively monetize 2.0 web-readiness vis-a-vis e-business customer service. Phosfluorescently administrate inexpensive value vis-a-vis fully tested models. Proactively visualize business experiences without.";
+        $dummy_image = "https://placehold.co/350x200";
+        $user_id = 11;
+        $created_at = date('Y-m-d H:i:s');
+
+        for($i = 0; $i < $num; $i++){
+
+          $title = $dummy_titles[array_rand($dummy_titles)];
+          $stmt->bindParam(':title', $title);
+          $stmt->bindParam(':dummy_content', $dummy_content);
+          $stmt->bindParam(':user_id', $user_id);
+          $stmt->bindParam(':created_at', $created_at);
+          $stmt->bindParam(':dummy_image', $dummy_image);
+
+          $stmt->execute();
+
+        }
+        return true;
+    }
 
 
   }

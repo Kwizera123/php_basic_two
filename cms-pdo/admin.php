@@ -21,7 +21,7 @@
         <h2 class="mb-4">Welcome <?php echo $_SESSION['username']; ?> to your Admin Dashboard</h2>
 
         <form action="create-dumm-articles.php" method="post">
-            <button type="submit">Generate Articles</button>
+            <button class="btn btn-primary mb-3" type="submit">Generate Articles</button>
         </form>
 
         <!-- Articles Table -->
