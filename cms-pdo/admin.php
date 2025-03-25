@@ -49,6 +49,7 @@
                         <th>Excerpt</th>
                         <th>Edit</th>
                         <th>Delete</th>
+                        <th>AJAX Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -75,6 +76,7 @@
                             <button class="btn btn-sm btn-danger">Delete</button>
                             </form>
                         </td>
+                        <td> <button data-id="<?php echo $articleItem->id; ?>" class="btn btn-sm btn-danger delete-single">Ajax delete</button> </td>
                     </tr>
                     <?php endforeach ?>
                  <?php endif; ?>
@@ -100,10 +102,34 @@
 
             checkboxes.forEach((checkbox) => {
                 selectIds.push(checkbox.value)
-            })
+            });
 
-            console.log(selectIds);
-        }
+            if(selectIds.length === 0){
+                alert("Hey! SELECT 1 At Least...");
+                return;
+            }
+                if(confirm("Are you sure you want to delete this artcle ?")){
+                    sendDeleteRequest(selectIds)
+                }
+
+            }
+
+
+                document.querySelectorAll('.delete-single').forEach((button) =>{
+                    button.onclick = function(){
+
+                        let articleId = this.getAttribute('data-id');
+                        if(confirm("Are you sure you want to delete this artcle " + articleId + ' ?')){
+                        sendDeleteRequest([articleId])
+                     }
+                    }
+                })
+
+                function sendDeleteRequest(articleIds){
+                    
+                }
+
+        
     </script>
 
     <?php
