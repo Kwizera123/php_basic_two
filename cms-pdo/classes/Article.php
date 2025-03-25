@@ -282,6 +282,14 @@
       }
     }
 
+    public function deleteMultiple($artcleIds)
+    {
+      $placeholders = implode(',', array_fill(0, count($artcleIds), '?'));
+      $query = "DELETE FROM " . $this->table . " WHERE id IN ($placeholders)";
+      $stmt = $this->conn->prepare($query);
+      return $stmt->execute($artcleIds);
+    }
+
 
   }
 
