@@ -41,6 +41,7 @@
             <table class="table table-bordered table-hover align-middle">
                 <thead class="table-dark">
                     <tr>
+                        <th><input type="checkbox" id="selectAll"></th>
                         <th>ID</th>
                         <th>Title</th>
                         <th>Author</th>
@@ -56,6 +57,7 @@
                         <?php foreach($userArticles as $articleItem): ?>
                     <!-- Example Article Row -->
                     <tr>
+                        <td><input type="checkbox" class="articleCheckbox" value="<?php echo $articleItem->id; ?>"></td>
                         <td><?php echo $articleItem->id; ?></td>
                         <td><?php echo $articleItem->title; ?></td>
                         <td><?php echo $_SESSION['username']; ?></td>
@@ -80,6 +82,29 @@
             </table>
         </div>
     </main>
+
+    <script>
+
+        // Select or Deselect all checkboxes
+        document.getElementById('selectAll').onclick = function(){
+            let checkboxes = document.querySelectorAll('.articleCheckbox');
+
+            for (let checkbox of checkboxes){
+                checkbox.checked = this.checked;
+            }
+        };
+
+        document.getElementById('deleteSelectedBtn').onclick =function(){
+            let selectIds = [];
+            let checkboxes = document.querySelectorAll('.articleCheckbox:checked');
+
+            checkboxes.forEach((checkbox) => {
+                selectIds.push(checkbox.value)
+            })
+
+            console.log(selectIds);
+        }
+    </script>
 
     <?php
   include "partials/admin/footer.php";
