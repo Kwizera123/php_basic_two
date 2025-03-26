@@ -1,14 +1,10 @@
 <?php 
 
-
 class HomeController {
   public function index(){
-    return "returning Home view";
+    require_once __DIR__ . '/../views/home/index.php';
   }
 
-  public function about(){
-    return "returning About view";
-  }
 
   
 }
