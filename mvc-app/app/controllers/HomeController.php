@@ -2,15 +2,21 @@
 
 class HomeController {
   public function index(){
+  //   $query = [
+  //     'name' => "Theo Kwiz",
+  //     'age' => 30,
+  //     'town' => "Muhanga"
+  //   ];
+  //   $request = "about";
 
-    echo base_url("HeLLO");
-    // $data = [
-    //   'title' => 'Home Page',
-    //   'message' => 'Welcome to the Home Page',
-    // ];
+  // redirect($request, $query);
+    $data = [
+      'title' => 'Home Page',
+      'message' => 'Welcome to the Home Page',
+    ];
 
-    // render('home/index', $data, 'layouts/hero_layout');
-    // require_once __DIR__ . '/../views/home/index.php';
+    render('home/index', $data, 'layouts/hero_layout');
+
   }
 
  
