@@ -4,7 +4,7 @@
         <h2 class="text-center mb-4">Register</h2>
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <form action="welcome.html" method="post">
+                <form action="/register" method="post">
                     <div class="mb-3">
                         <label for="name" class="form-label">Full Name *</label>
                         <input
