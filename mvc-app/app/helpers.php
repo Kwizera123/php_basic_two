@@ -3,9 +3,9 @@
 // BASE URL
 function base_url($path = '') {
 
-  if(defined('BASE_URL')) {
-    return BASE_URL . ltrim($path, '/');
-  }
+  // if(defined('BASE_URL')) {
+  //   return BASE_URL . ltrim($path, '/');
+  // }
 
   // https:// or http://
   $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443 ? "https://" : "http://";

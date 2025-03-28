@@ -7,7 +7,7 @@ return [
       'username' => 'root',
       'password' => '',
       'port' => 3306,
-      'chartset' => 'utf8mb4'
+      'charset' => 'utf8mb4'
   ],
   'app' => [
       'base_url' => 'http://mvc-app.local/',
