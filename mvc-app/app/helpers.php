@@ -53,8 +53,20 @@ function render($view, $data = [], $layout = 'layout'){
   $content = ob_get_clean();
 
   require views_path($layout . ".php");
+}
 
+function config($key){
+  $config = require base_path('config/config.php');
+  $key = explode('.', $key);
+  $value = $config;
 
+  foreach($keys as $k){
+    if(!isset($value[$k])){
+      throw new Exception("Config key '{$k}' not found");
+    }
+    $value = $value[$k];
+  }
+  return $value;
 }
 
 ?>

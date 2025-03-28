@@ -2,14 +2,11 @@
 
 class HomeController {
   public function index(){
-  //   $query = [
-  //     'name' => "Theo Kwiz",
-  //     'age' => 30,
-  //     'town' => "Muhanga"
-  //   ];
-  //   $request = "about";
 
-  // redirect($request, $query);
+    // $database = Database::getInstance();
+    // $conn = $database->getConnection();
+
+
     $data = [
       'title' => 'Home Page',
       'message' => 'Welcome to the Home Page',
