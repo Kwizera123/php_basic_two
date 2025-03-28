@@ -2,7 +2,7 @@
 
   class UserController{
 
-    public function register(){
+    public function showRegisterForm(){
 
       $data = [
         'title' => "Register"
@@ -13,8 +13,10 @@
 
     }
 
-    public function registerUser(){
+    public function register(){
 
       var_dump($_POST);
     }
+
+
   }
