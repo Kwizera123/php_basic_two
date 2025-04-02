@@ -41,6 +41,24 @@
 
     }
 
+    public function login(){
+      $query = "SELECT * FROM $this->table WHERE email = :email";
+      $stmt = $this->conn->prepare($query);
+
+      $this->email = sanitize($this->email);
+
+      $stmt->bindParam(':email', $this->email);
+      $stmt->execute();
+      $dbUser = $stmt->fetch(PDO::FETCH_OBJ);
+
+      if($dbUser && password_verify($this->password, $dbUser->password)){
+        $this->id = $dbUser->id;
+        $this->username = $dbUser->username;
+        return true;
+      }
+      return false;
+    }
+
 
   }
 ?>

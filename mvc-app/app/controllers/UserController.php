@@ -2,6 +2,12 @@
 
   class UserController{
 
+    private $userModel;
+
+    public function __construct() {
+      $this->userModel = new User();
+    }
+
     public function showLoginForm(){
 
       $data = [
@@ -10,6 +16,19 @@
 
       render('user/login', $data);
 
+    }
+
+    public function loginUser(){
+      $this->userModel->email = $_POST['email'];
+      $this->userModel->password = $_POST['password'];
+
+      if($this->userModel->login()){
+        $_SESSION['id'] = $this->userModel->id;
+        $_SESSION['username'] = $this->userModel->username;
+        redirect('/');
+      } else {
+        echo "There was an error";
+      }
     }
 
     public function showRegisterForm(){

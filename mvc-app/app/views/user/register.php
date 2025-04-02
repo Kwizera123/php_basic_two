@@ -4,7 +4,7 @@
         <h2 class="text-center mb-4">Register</h2>
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <form action="/register" method="POST">
+                <form action="<?php echo base_url("/register"); ?>" method="POST">
                     <div class="mb-3">
                         <label for="name" class="form-label">Username *</label>
                         <input
