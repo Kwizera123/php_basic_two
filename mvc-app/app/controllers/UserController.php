@@ -10,12 +10,21 @@
 
       render('user/register', $data);
 
-
     }
 
     public function register(){
 
-      var_dump($_POST);
+
+       $user = new User();
+       $user->username = $_POST['username'];
+       $user->email = $_POST['email'];
+       $user->password = $_POST['password'];
+
+       if($user->store()){
+         redirect('/');
+       } else {
+         echo "There was an error";
+       }
     }
 
 

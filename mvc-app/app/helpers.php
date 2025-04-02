@@ -57,7 +57,7 @@ function render($view, $data = [], $layout = 'layout'){
 
 function config($key){
   $config = require base_path('config/config.php');
-  $key = explode('.', $key);
+  $keys = explode('.', $key);
   $value = $config;
 
   foreach($keys as $k){

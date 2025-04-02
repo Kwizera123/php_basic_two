@@ -4,9 +4,9 @@
         <h2 class="text-center mb-4">Register</h2>
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <form action="/register" method="post">
+                <form action="/register" method="POST">
                     <div class="mb-3">
-                        <label for="name" class="form-label">Full Name *</label>
+                        <label for="name" class="form-label">Username *</label>
                         <input
                             name="username"
                             type="text"
@@ -38,7 +38,7 @@
                     <div class="mb-3">
                         <label for="confirm-password" class="form-label">Confirm Password *</label>
                         <input
-                            name="confirm-password"
+                            name="confirm_password"
                             type="password"
                             class="form-control"
                             id="confirm-password"
