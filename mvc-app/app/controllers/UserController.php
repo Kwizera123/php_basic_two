@@ -2,6 +2,16 @@
 
   class UserController{
 
+    public function showLoginForm(){
+
+      $data = [
+        'title' => "Login"
+      ];
+
+      render('user/login', $data);
+
+    }
+
     public function showRegisterForm(){
 
       $data = [

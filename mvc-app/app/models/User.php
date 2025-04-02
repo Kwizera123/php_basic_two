@@ -6,6 +6,15 @@
     public $username;
     public $email;
     public $password;
+    public $first_name;
+    public $last_name;
+    public $phone;
+    public $birthday;
+    public $organization;
+    public $location;
+    public $profile_image;
+    public $created_at;
+    public $updated_at;
 
     private $conn;
 
