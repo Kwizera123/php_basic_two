@@ -6,13 +6,13 @@
                         <a class="nav-link active" aria-current="page" href="<?php echo base_url('/'); ?>">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="admin.html">Admin</a>
+                        <a class="nav-link" href="<?php echo base_url('dashboard'); ?>">Admin</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo base_url('about'); ?>">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
+                        <a class="nav-link" href="<?php echo base_url('contact'); ?>">Contact</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo base_url('user/login'); ?>">Login</a>

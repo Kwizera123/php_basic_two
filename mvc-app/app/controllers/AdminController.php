@@ -8,7 +8,7 @@
 
     public function dashboard(){
       $data = [
-        'title' => 'Home Page',
+        'title' => 'Dashboard',
         'message' => 'Welcome to the Dashboard',
 
       ];
