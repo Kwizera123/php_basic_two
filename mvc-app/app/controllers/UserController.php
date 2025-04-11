@@ -25,7 +25,7 @@
       if($this->userModel->login()){
         $_SESSION['id'] = $this->userModel->id;
         $_SESSION['username'] = $this->userModel->username;
-        redirect('/');
+        redirect('/dashboard');
       } else {
         echo "There was an error";
       }
@@ -50,10 +50,16 @@
        $user->password = $_POST['password'];
 
        if($user->store()){
-         redirect('/');
+         redirect('/dashboard');
        } else {
          echo "There was an error";
        }
+    }
+
+    public function logout(){
+      $_SESSION = [];
+      session_destroy();
+      redirect('/user/login');
     }
 
 

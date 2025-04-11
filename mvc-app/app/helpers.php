@@ -73,4 +73,8 @@ function sanitize($value){
   return htmlspecialchars(strip_tags($value));
 }
 
+function isLoggedIn(){
+  return isset($_SESSION['id']);
+}
+
 ?>
