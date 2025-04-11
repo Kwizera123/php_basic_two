@@ -8,6 +8,15 @@
       $this->userModel = new User();
     }
 
+    public function showProfile(){
+
+      $data = [
+        'title' => "Profile"
+      ];
+
+      render('admin/users/profile', $data, 'layouts/admin_layout');
+    }
+
     public function showLoginForm(){
 
       $data = [
