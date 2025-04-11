@@ -54,6 +54,8 @@
       if($dbUser && password_verify($this->password, $dbUser->password)){
         $this->id = $dbUser->id;
         $this->username = $dbUser->username;
+        $this->first_name = $dbUser->first_name;
+        $this->last_name = $dbUser->last_name;
         return true;
       }
       return false;
