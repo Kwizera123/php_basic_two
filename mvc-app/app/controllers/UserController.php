@@ -33,7 +33,7 @@
 
     public function updateProfile(){
         $userId = $_SESSION['user_id'];
-        
+
         $first_name = sanitize($_POST['first_name'] ?? '');
         $last_name = sanitize($_POST['last_name'] ?? '');
         $email = sanitize($_POST['email'] ?? '');
@@ -41,7 +41,19 @@
         $birthday = sanitize($_POST['birthday'] ?? '');
         $organization = sanitize($_POST['organization'] ?? '');
         $location = sanitize($_POST['location'] ?? '');
-        //$profile_image = sanitize($_POST['profile_image'] ?? '');
+
+        $userData = [
+          'first_name' => $first_name,
+          'last_name' => $last_name,
+          'email' => $email,
+          'phone' => $phone,
+          'birthday' => $birthday,
+          'organization' => $organization,
+          'location' => $location
+        ];
+
+        $updateStatus = $this->userModel->update($userId, $userData);
+        var_dump($updateStatus);
     }
 
     public function showLoginForm(){
