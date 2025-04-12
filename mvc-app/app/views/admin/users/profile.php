@@ -7,7 +7,7 @@
             <div class="card-body box-profile">
                 <div class="text-center">
                     <img class="profile-user-img img-fluid img-circle"
-                         src="<?php $profile_image ?? 'uploads/dummy-profile.png'; ?>"
+                         src="<?php echo base_url($profile_image ?? 'dummy-profile.png'); ?>"
                          alt="User profile picture">
                 </div>
 
@@ -51,12 +51,19 @@
     <div class="col-md-9">
 
     <?php if(isset($_SESSION['error'])): ?>
-
         <div class="alert alert-danger">
             <?php echo $_SESSION['error']; ?>
             <?php unset ($_SESSION['error']); ?>
         </div>
         <?php endif; ?>
+
+        <?php if(isset($_SESSION['message'])): ?>
+        <div class="alert alert-success">
+            <?php echo $_SESSION['message']; ?>
+            <?php unset ($_SESSION['message']); ?>
+        </div>
+        <?php endif; ?>
+
         <div class="card">
             <div class="card-header p-2">
                 <ul class="nav nav-pills">

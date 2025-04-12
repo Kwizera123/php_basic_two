@@ -58,18 +58,24 @@
           if($imagePath){
             $userData['profile_image'] = $imagePath;
           } else {
-            $_SESSION['error'] = 'FAILED to upload image';
+            setSessionMessage('error', 'Failed to update profile image');
             redirect('/admin/users/profile');
           }
+          
         }
 
         $updateStatus = $this->userModel->update($userId, $userData);
 
         if($updateStatus){
-          $_SESSION['message'] = "Profile updated successfully";
+          setSessionMessage('message', 'Profile updated successfully');
+          //$_SESSION['message'] = "Profile updated successfully";
         } else {
-          $_SESSION['error'] = "Failed to update profile image";
+          setSessionMessage( 'error', 'Failed to update profile');
+          //$_SESSION['error'] = "Failed to update profile image";
+
+         
         }
+        redirect('/admin/users/profile');
       
       }
 
