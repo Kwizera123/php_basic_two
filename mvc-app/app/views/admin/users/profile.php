@@ -7,38 +7,38 @@
             <div class="card-body box-profile">
                 <div class="text-center">
                     <img class="profile-user-img img-fluid img-circle"
-                         src="uploads/dummy-profile.png"
+                         src="<?php $profile_image ?? 'uploads/dummy-profile.png'; ?>"
                          alt="User profile picture">
                 </div>
 
-                <h3 class="profile-username text-center">John Doe</h3>
+                <h3 class="profile-username text-center"><?php echo $username; ?></h3>
 
                 <p class="text-muted text-center">Software Engineer</p> <!-- Adjust this if you store roles or titles -->
 
                 <ul class="list-group list-group-unbordered mb-3">
                     <li class="list-group-item">
-                        <b>Username</b> <a class="float-right">johndoe</a>
+                        <b>Username</b> <a class="float-right"><?php echo $username; ?></a>
                     </li>
                     <li class="list-group-item">
-                        <b>Email</b> <a class="float-right">johndoe@example.com</a>
+                        <b>Email</b> <a class="float-right"><?php echo $user->email; ?></a>
                     </li>
                     <li class="list-group-item">
-                        <b>Phone</b> <a class="float-right">+123456789</a>
+                        <b>Phone</b> <a class="float-right"><?php echo $phone; ?></a>
                     </li>
                     <li class="list-group-item">
-                        <b>First Name</b> <a class="float-right">John</a>
+                        <b>First Name</b> <a class="float-right"><?php echo $first_name; ?></a>
                     </li>
                     <li class="list-group-item">
-                        <b>Last Name</b> <a class="float-right">Doe</a>
+                        <b>Last Name</b> <a class="float-right"><?php echo $last_name; ?></a>
                     </li>
                     <li class="list-group-item">
-                        <b>Birthday</b> <a class="float-right">1990-01-01</a>
+                        <b>Birthday</b> <a class="float-right"><?php echo $birthday; ?></a>
                     </li>
                     <li class="list-group-item">
-                        <b>Organization</b> <a class="float-right">Example Corp</a>
+                        <b>Organization</b> <a class="float-right"><?php echo $organization; ?></a>
                     </li>
                     <li class="list-group-item">
-                        <b>Location</b> <a class="float-right">New York, USA</a>
+                        <b>Location</b> <a class="float-right"><?php echo $location; ?></a>
                     </li>
                 </ul>
             </div>
@@ -108,53 +108,53 @@
 
                     <!-- Settings Tab -->
                     <div class="tab-pane active" id="settings">
-                        <form action="#" class="form-horizontal" method="POST" enctype="multipart/form-data">
+                        <form action="<?php echo base_url('/admin/user/update'); ?>" class="form-horizontal" method="POST" enctype="multipart/form-data">
                             <div class="form-group row">
                                 <label for="inputUsername" class="col-sm-2 col-form-label">Username</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputUsername" name="username" value="johndoe" placeholder="Username">
+                                    <input disabled type="text" class="form-control" id="inputUsername" name="username" value="<?php echo $username; ?>" placeholder="Username">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="inputFirstName" class="col-sm-2 col-form-label">First Name</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputFirstName" name="first_name" value="John" placeholder="First Name">
+                                    <input type="text" class="form-control" id="inputFirstName" name="first_name" value="<?php echo $first_name; ?>" placeholder="First Name">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="inputLastName" class="col-sm-2 col-form-label">Last Name</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputLastName" name="last_name" value="Doe" placeholder="Last Name">
+                                    <input type="text" class="form-control" id="inputLastName" name="last_name" value="<?php echo $last_name; ?>" placeholder="Last Name">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                                 <div class="col-sm-10">
-                                    <input type="email" class="form-control" id="inputEmail" name="email" value="johndoe@example.com" placeholder="Email">
+                                    <input type="email" class="form-control" id="inputEmail" name="email" value="<?php echo $email; ?>" placeholder="Email">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="inputPhone" class="col-sm-2 col-form-label">Phone</label>
                                 <div class="col-sm-10">
-                                    <input type="tel" class="form-control" id="inputPhone" name="phone" value="+123456789" placeholder="Phone">
+                                    <input type="tel" class="form-control" id="inputPhone" name="phone" value="<?php echo $phone; ?>" placeholder="Phone">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="inputBirthday" class="col-sm-2 col-form-label">Birthday</label>
                                 <div class="col-sm-10">
-                                    <input type="date" class="form-control" id="inputBirthday" name="birthday" value="1990-01-01" placeholder="Birthday">
+                                    <input type="date" class="form-control" id="inputBirthday" name="birthday" value="<?php echo $birthday; ?>" placeholder="Birthday">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="inputOrganization" class="col-sm-2 col-form-label">Organization</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputOrganization" name="organization" value="Example Corp" placeholder="Organization">
+                                    <input type="text" class="form-control" id="inputOrganization" name="organization" value="<?php echo $organization; ?>" placeholder="Organization">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="inputLocation" class="col-sm-2 col-form-label">Location</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputLocation" name="location" value="New York, USA" placeholder="Location">
+                                    <input type="text" class="form-control" id="inputLocation" name="location" value="<?php echo $location; ?>" placeholder="Location">
                                 </div>
                             </div>
                             <div class="form-group row">

@@ -74,7 +74,7 @@ function sanitize($value){
 }
 
 function isLoggedIn(){
-  return isset($_SESSION['id']);
+  return isset($_SESSION['user_id']);
 }
 
 function getUserFullName(){

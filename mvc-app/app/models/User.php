@@ -20,7 +20,15 @@
 
     public function __construct(){
       $this->conn = Database::getInstance()->getConnection();
+    }
 
+    public function getUserById($userId){
+      $query = "SELECT * FROM users WHERE id = :id";
+      $stmt = $this->conn->prepare($query);
+      $stmt->bindParam(':id', $userId);
+      $stmt->execute();
+
+      return $stmt->fetchObject();
     }
 
     public function store(){

@@ -10,11 +10,38 @@
 
     public function showProfile(){
 
+      $userId = $_SESSION['user_id'];
+
+      $user = $this->userModel->getUserById($userId);
+
       $data = [
-        'title' => "Profile"
+        'title' => "Profile",
+        'user' => $user,
+        'username' => $user->username,
+        'first_name' => $user->first_name,
+        'last_name' => $user->last_name,
+        'email' => $user->email,
+        'phone' => $user->phone,
+        'birthday' => $user->birthday,
+        'organization' => $user->organization,
+        'location' => $user->location,
+        'profile_image' => $user->profile_image,
       ];
 
       render('admin/users/profile', $data, 'layouts/admin_layout');
+    }
+
+    public function updateProfile(){
+        $userId = $_SESSION['user_id'];
+        
+        $first_name = sanitize($_POST['first_name'] ?? '');
+        $last_name = sanitize($_POST['last_name'] ?? '');
+        $email = sanitize($_POST['email'] ?? '');
+        $phone = sanitize($_POST['phone'] ?? '');
+        $birthday = sanitize($_POST['birthday'] ?? '');
+        $organization = sanitize($_POST['organization'] ?? '');
+        $location = sanitize($_POST['location'] ?? '');
+        //$profile_image = sanitize($_POST['profile_image'] ?? '');
     }
 
     public function showLoginForm(){
@@ -32,7 +59,7 @@
       $this->userModel->password = $_POST['password'];
 
       if($this->userModel->login()){
-        $_SESSION['id'] = $this->userModel->id;
+        $_SESSION['user_id'] = $this->userModel->id;
         $_SESSION['username'] = $this->userModel->username;
         $_SESSION['first_name'] = $this->userModel->first_name;
         $_SESSION['last_name'] = $this->userModel->last_name;
