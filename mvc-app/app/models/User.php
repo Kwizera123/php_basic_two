@@ -2,6 +2,7 @@
   class User {
 
     private $table = 'users';
+    private $uploadDir = "uploads/users/";
     public $id;
     public $username;
     public $email;
@@ -52,6 +53,35 @@
       $stmt->bindValue(':id', $userId, PDO::PARAM_INT);
 
       return $stmt->execute();
+    }
+
+    public function handleImageUpload($file){
+      $maxSize = 5 * 1024 * 1024; // MAX FILE SIZE 5MB
+      $tempLocation = $file['tmp_name'];
+
+      if($file['size'] > $maxSize){
+        $_SESSION['error'] = "FILE exceeds 5MB limite";
+        return false;
+      }
+      $fileExtension = pathinfo($file['name'], PATHINFO_EXTENSION);
+
+      $filename = uniqid('user_', true) . '.' . $fileExtension;
+
+      if(!file_exists($this->uploadDir)){
+        mkdir($this->uploadDir, 0755, true);
+      }
+
+      $filePath = $this->uploadDir . $filename;
+
+      if(move_uploaded_file($tempLocation, $filePath)){
+        return $filePath;
+      } else {
+        $_SESSION['error'] = "Failed to upload from user model";
+        return false;
+      }
+
+
+
     }
 
     public function store(){

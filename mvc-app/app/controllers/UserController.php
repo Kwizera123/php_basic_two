@@ -52,9 +52,26 @@
           'location' => $location
         ];
 
+        if(isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] === UPLOAD_ERR_OK){
+          $imagePath = $this->userModel->handleImageUpload($_FILES['profile_image']);
+
+          if($imagePath){
+            $userData['profile_image'] = $imagePath;
+          } else {
+            $_SESSION['error'] = 'FAILED to upload image';
+            redirect('/admin/users/profile');
+          }
+        }
+
         $updateStatus = $this->userModel->update($userId, $userData);
-        var_dump($updateStatus);
-    }
+
+        if($updateStatus){
+          $_SESSION['message'] = "Profile updated successfully";
+        } else {
+          $_SESSION['error'] = "Failed to update profile image";
+        }
+      
+      }
 
     public function showLoginForm(){
 

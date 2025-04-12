@@ -49,6 +49,14 @@
     <!-- /.col -->
 
     <div class="col-md-9">
+
+    <?php if(isset($_SESSION['error'])): ?>
+
+        <div class="alert alert-danger">
+            <?php echo $_SESSION['error']; ?>
+            <?php unset ($_SESSION['error']); ?>
+        </div>
+        <?php endif; ?>
         <div class="card">
             <div class="card-header p-2">
                 <ul class="nav nav-pills">
