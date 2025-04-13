@@ -79,6 +79,34 @@
       
       }
 
+      public function updateUserProfilePassword(){
+
+        $userId = $_SESSION['user_id'];
+
+        $newPassword = sanitize($_POST['new_password'] ?? '');
+        $confirmPassword = sanitize($_POST['confirm_password'] ?? '');
+
+        if(empty($newPassword) || empty($confirmPassword)){
+          setSessionMessage('error', 'Please fill all the required fields');
+          redirect('/admin/users/profile');
+        }
+
+          if($newPassword !== $confirmPassword){
+            setSessionMessage('error', 'Passwords do not much');
+            redirect('/admin/users/profile');
+          }
+
+          $updateStatus = $this->userModel->updatePassword($userId, $newPassword);
+
+          if($updateStatus){
+            setSessionMessage('message', 'Password updated successfully');
+          } else {
+            setSessionMessage('error', 'Failed to update password');
+          }
+
+          redirect('/admin/users/profile');
+      }
+
     public function showLoginForm(){
 
       $data = [

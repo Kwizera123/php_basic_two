@@ -182,7 +182,7 @@
 
                     <!-- Password Tab -->
                     <div class="tab-pane" id="password">
-                        <form action="#" method="POST" class="form-horizontal">
+                        <form action="<?php echo base_url('/admin/profile/user/password/update'); ?>" method="POST" class="form-horizontal">
                             <div class="form-group row">
                                 <label for="inputNewPassword" class="col-sm-2 col-form-label">New Password</label>
                                 <div class="col-sm-10">
