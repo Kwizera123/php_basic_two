@@ -164,5 +164,9 @@
       redirect('/user/login');
     }
 
+    public function test(){
+      var_dump('WORKS');
+    }
+
 
   }
