@@ -57,25 +57,29 @@
         </div>
         <?php endif; ?>
 
+        <?php 
+            $activeTab = $_SESSION['active_tab'] ?? '#settings'; 
+            unset($_SESSION['active_tab']);
+        ?>
 
         <div class="card">
             <div class="card-header p-2">
                 <ul class="nav nav-pills">
                     <li class="nav-item">
-                        <a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a>
+                        <a class="nav-link <?php echo $activeTab == '#timeline' ? 'active' : ''; ?>" href="#timeline" data-toggle="tab">Timeline</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#settings" data-toggle="tab">Settings</a>
+                        <a class="nav-link <?php echo $activeTab == '#settings' ? 'active' : ''; ?>" href="#settings" data-toggle="tab">Settings</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#password" data-toggle="tab">Password</a>
+                        <a class="nav-link <?php echo $activeTab == '#password' ? 'active' : ''; ?>" href="#password" data-toggle="tab">Password</a>
                     </li>
                 </ul>
             </div><!-- /.card-header -->
             <div class="card-body">
                 <div class="tab-content">
                     <!-- Timeline Tab -->
-                    <div class="tab-pane" id="timeline">
+                    <div class="tab-pane <?php echo $activeTab == '#timeline' ? 'active' : ''; ?>" id="timeline">
                         <!-- The timeline -->
                         <div class="timeline timeline-inverse">
                             <div class="time-label">
@@ -116,7 +120,7 @@
                     </div>
 
                     <!-- Settings Tab -->
-                    <div class="tab-pane active" id="settings">
+                    <div class="tab-pane <?php echo $activeTab == '#settings' ? 'active' : ''; ?>" id="settings">
                         <form action="<?php echo base_url('/admin/user/update'); ?>" class="form-horizontal" method="POST" enctype="multipart/form-data">
                             <div class="form-group row">
                                 <label for="inputUsername" class="col-sm-2 col-form-label">Username</label>
@@ -181,7 +185,7 @@
                     </div>
 
                     <!-- Password Tab -->
-                    <div class="tab-pane" id="password">
+                    <div class="tab-pane <?php echo $activeTab == '#password' ? 'active' : ''; ?>" id="password">
                         <form action="<?php echo base_url('/admin/profile/user/password/update'); ?>" method="POST" class="form-horizontal">
                             <div class="form-group row">
                                 <label for="inputNewPassword" class="col-sm-2 col-form-label">New Password</label>

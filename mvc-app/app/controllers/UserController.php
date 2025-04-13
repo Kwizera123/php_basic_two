@@ -68,7 +68,7 @@
 
         if($updateStatus){
           setSessionMessage('message', 'Profile updated successfully');
-          //$_SESSION['message'] = "Profile updated successfully";
+          $_SESSION['active_tab'] = '#settings';
         } else {
           setSessionMessage( 'error', 'Failed to update profile');
           //$_SESSION['error'] = "Failed to update profile image";
@@ -100,6 +100,7 @@
 
           if($updateStatus){
             setSessionMessage('message', 'Password updated successfully');
+            $_SESSION['active_tab'] = '#password';
           } else {
             setSessionMessage('error', 'Failed to update password');
           }
