@@ -164,8 +164,9 @@
       redirect('/user/login');
     }
 
-    public function test(){
-      var_dump('WORKS');
+    public function test($id){
+      var_dump($this->userModel->getUserById($id));
+      
     }
 
 

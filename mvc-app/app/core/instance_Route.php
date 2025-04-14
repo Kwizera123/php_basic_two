@@ -14,7 +14,7 @@
         }
 
         public function post($path, $handler){
-            $this->routes['GET'][$this->formatRoute($path)] = $handler;
+            $this->routes['POST'][$this->formatRoute($path)] = $handler;
         }
 
         protected function formatRoute($route){
@@ -25,15 +25,14 @@
             $method = $_SERVER['REQUEST_METHOD'];
             $requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
             $cleanedRequest = $this->formatRoute($requestUri);
-
             if($this->match($method, $cleanedRequest)){
                 $handler = $this->match($method, $cleanedRequest);
+                list($controller, $action) = explode('@', $handler['handler']);
+                $params = $handler['params'];
 
-                echo "<pre>";
-                print_r($handler);
-                echo "</pre>";
+                $this->callAction($controller, $action, $params);
 
-                var_dump($handler);
+
             }
 
         }
@@ -55,6 +54,13 @@
                  };
              }
              return false;
+        }
+
+        protected function callAction($controller, $action, $params = [])
+        {
+            require_once base_path('/app/controllers/') . '/' . $controller . '.php';
+            $controllerInstance = new $controller();
+            call_user_func_array( [$controllerInstance, $action], $params);
         }
     }
 

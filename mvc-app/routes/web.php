@@ -1,31 +1,26 @@
 <?php 
 
-$router = new Route();
 
-$router->get('/user/test/{id}/{username}', 'UserController@test');
 
-$router->dispatch();
 
-$routes = [
-  'GET' => [
-      '/' => 'HomeController@index',
-      '/about' => 'HomeController@about',
-      '/contact' => 'HomeController@contact',
-      '/user/register' => 'UserController@showRegisterForm',
-      '/user/login' => 'UserController@showLoginForm',
-      '/dashboard' => 'AdminController@dashboard',
-      '/admin' => 'AdminController@admin',
-      '/admin/users/profile' => 'UserController@showProfile',
-      
-  ],
 
-  'POST' => [
-    '/register' => 'UserController@register',
-    '/login' => 'UserController@loginUser',
-    '/logout' => 'UserController@logout',
-    '/admin/user/update' => 'UserController@updateProfile',
-    '/admin/profile/user/password/update' => 'UserController@updateUserProfilePassword',
-  ]
+Router::get('/', 'HomeController@index');
+Router::get('/about' , 'HomeController@about');
+Router::get( '/contact' , 'HomeController@contact');
+Router::get('/user/register' , 'UserController@showRegisterForm');
+Router::get('/user/login' , 'UserController@showLoginForm');
+Router::get('/dashboard' , 'AdminController@dashboard');
+Router::get('/admin' , 'AdminController@admin');
+Router::get( '/admin/users/profile' , 'UserController@showProfile');
+Router::get( '/user/test/{id}', 'UserController@test');
 
-];
+
+Router::post( '/register' , 'UserController@register');
+Router::post( '/login' , 'UserController@loginUser');
+Router::post( '/logout' , 'UserController@logout');
+Router::post( '/admin/user/update' , 'UserController@updateProfile');
+Router::post( '/admin/profile/user/password/update' , 'UserController@updateUserProfilePassword');
+
+
+
 
