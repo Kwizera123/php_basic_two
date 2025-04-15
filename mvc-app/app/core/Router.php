@@ -62,10 +62,23 @@
                 list($controller, $action) = explode('@', $handler['handler']);
                 $params = $handler['params'];
                 self::callAction($controller, $action, $params);
-
-
+            } else {
+                http_response_code(404);
+                self::error404();
             }
 
+        }
+
+        protected static function error404(){
+            $data = [
+                'title' => '404 - Not Found',
+                'message' => 'Sorry! The page you are looking for could not be found'
+            ];
+            render('errors/404', $data);
+        }
+
+        protected static function render404(){
+            require_once views_path('errors/404.php');
         }
 
         public static function match($method, $requestUri){
