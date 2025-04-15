@@ -12,13 +12,13 @@ Router::get('/user/login' , 'UserController@showLoginForm');
 Router::get('/dashboard' , 'AdminController@dashboard');
 Router::get('/admin' , 'AdminController@admin');
 Router::get( '/admin/users/profile' , 'UserController@showProfile');
-Router::get( '/user/test/{id}', 'UserController@test');
 
+Router::get( '/admin/test/{id}' , 'AdminController@test')->name('admin.test');
 
 Router::post( '/register' , 'UserController@register');
-Router::post( '/login' , 'UserController@loginUser');
+Router::post( '/login' , 'UserController@loginUser')->name('login');
 Router::post( '/logout' , 'UserController@logout');
-Router::post( '/admin/user/update' , 'UserController@updateProfile');
+Router::post( '/admin/user/update', 'UserController@updateProfile')->name('update.profile');
 Router::post( '/admin/profile/user/password/update' , 'UserController@updateUserProfilePassword');
 
 

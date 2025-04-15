@@ -119,9 +119,10 @@
                         </div>
                     </div>
 
-                    <!-- Settings Tab -->
+                    <!-- Settings Tab <?php //echo base_url('/admin/user/update'); ?>-->
+                     <!-- Denied working <?php //echo Router::route('update.profile'); ?> -->
                     <div class="tab-pane <?php echo $activeTab == '#settings' ? 'active' : ''; ?>" id="settings">
-                        <form action="<?php echo base_url('/admin/user/update'); ?>" class="form-horizontal" method="POST" enctype="multipart/form-data">
+                        <form action="<?php echo Router::route('update.profile'); ?>" class="form-horizontal" method="POST" enctype="multipart/form-data">
                             <div class="form-group row">
                                 <label for="inputUsername" class="col-sm-2 col-form-label">Username</label>
                                 <div class="col-sm-10">

@@ -29,6 +29,13 @@
       render('admin/index', $data, 'layouts/admin_layout');
     }
 
+    public function test($id){
+
+      $user = new User();
+
+      $data = $user->getUserById($id);
+      var_dump($data);
+    }
 
     }
 

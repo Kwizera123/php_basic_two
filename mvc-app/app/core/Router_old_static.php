@@ -7,46 +7,12 @@
             'POST' => [],
         ];
 
-        protected static $nameRoutes = [];
-        protected static $lastAddedRoute = null;
         public static function get($path, $handler){
-
-            $formattedPath = self::formatRoute($path);
-            self::$routes['GET'][$formattedPath] = $handler;
-            self::$lastAddedRoute = $formattedPath;
-            return new static;
+            self::$routes['GET'][self::formatRoute($path)] = $handler;
         }
 
         public static function post($path, $handler){
-            $formattedPath = self::formatRoute($path);
-            self::$routes['POST'][$formattedPath] = $handler;
-            self::$lastAddedRoute = $formattedPath;
-            return new static;
-
-        }
-
-        public static function name($routeName){
-
-            if(self::$lastAddedRoute !== null){
-                self::$nameRoutes[$routeName] = self::$lastAddedRoute;
-                self::$lastAddedRoute = null;
-            } else {
-                throw new Exception("No route available for named $routeName");
-            }
-
-            return new static;
-        }
-
-        public static function route($name, $params = []){
-            if(!isset(self::$nameRoutes[$name])){
-                throw new Exception("Route $name does not exist");
-            }
-            $route = self::$nameRoutes[$name];
-
-            foreach($params as $key => $value){
-                $route = str_replace('{'.$key.'}', $value, $route);
-            }
-            return $route;
+          self::$routes['POST'][self::formatRoute($path)] = $handler;
         }
 
         protected static function formatRoute($route){

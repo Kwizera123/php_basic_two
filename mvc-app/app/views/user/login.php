@@ -4,7 +4,7 @@
         <h2 class="text-center mb-4">Login</h2>
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <form action="<?php echo base_url("/login"); ?>" method="post">
+                <form action="<?php echo route('login'); ?>" method="post">
                     <div class="mb-3">
                         <label for="email" class="form-label">Email address *</label>
                         <input

@@ -24,8 +24,13 @@ function base_path($path = '') {
 }
 
 function views_path($path = ''){
-  return base_path('app/views/' . ltrim($path, '/'));
+  return base_path('app/views/' . '/' . ltrim($path, '/'));
 
+}
+
+function route($name, $parameters = [])
+{
+  return Router::route($name, $parameters);
 }
 
 function redirect($path = '', $queryParams = []){
